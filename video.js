@@ -1,13 +1,18 @@
 // This is a mock video system. In a real application, this would be handled by a server.
 
-const videos = [];
+let videos = JSON.parse(localStorage.getItem('videos')) || [];
 
-function addVideo(title, url, category, tags) {
+function saveVideos() {
+    localStorage.setItem('videos', JSON.stringify(videos));
+}
+
+function addVideo(title, url, description, category, tags) {
     const videoId = extractVideoId(url);
     if (!videoId) {
         return { success: false, message: 'Invalid YouTube URL' };
     }
-    videos.push({ id: videoId, title: title, url: url, category: category, tags: tags, savedBy: [] });
+    videos.push({ id: videoId, title: title, url: url, description: description, category: category, tags: tags, savedBy: [] });
+    saveVideos();
     return { success: true };
 }
 
@@ -18,23 +23,28 @@ function extractVideoId(url) {
 }
 
 function renderVideos(videosToRender = videos) {
-    const videoGrid = document.querySelector('.video-grid');
+    const videoGrid = document.getElementById('video-grid');
     videoGrid.innerHTML = '';
     videosToRender.forEach(video => {
         const videoElement = document.createElement('div');
-        videoElement.classList.add('video-item');
+        videoElement.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'mb-20');
         videoElement.innerHTML = `
-            <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank">
-                <img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" alt="Video thumbnail">
-            </a>
-            <div class="video-info">
-                <h4>${video.title}</h4>
-                <p class="video-category">${video.category}</p>
-                <div class="video-tags">
-                    ${video.tags.map(tag => `<span>${tag}</span>`).join('')}
+            <div class="card h-full">
+                <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank">
+                    <img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" class="img-fluid rounded-top" alt="Video thumbnail">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">${video.title}</h4>
+                    <p class="text-muted">${video.category}</p>
+                    <p>${video.description}</p>
+                    <div class="video-tags">
+                        ${video.tags.map(tag => `<span class="badge badge-primary">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger favorite-video-button" data-video-id="${video.id}">&#x2764;</button>
                 </div>
             </div>
-            <button class="favorite-video-button" data-video-id="${video.id}">&#x2764;</button>
         `;
         videoGrid.appendChild(videoElement);
     });

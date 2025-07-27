@@ -4,42 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Factual Docs Clone</title>
+    <!-- Halfmoon CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <a href="/">Factual Docs Clone</a>
-        </div>
-    </header>
+<body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+    <div class="page-wrapper with-navbar">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <a href="/" class="navbar-brand">Factual Docs Clone</a>
+            </div>
+        </nav>
 
-    <main>
-        <div class="form-container">
-            <h2>Register</h2>
-            <form action="/register" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="card shadow-sm mx-auto" style="max-width: 400px;">
+                    <div class="card-body">
+                        <h2 class="card-title">Register</h2>
+                        <form id="register-form">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input type="password" id="confirm-password" name="confirm-password" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required>
-                </div>
-                <button type="submit">Register</button>
-            </form>
+            </div>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <p>&copy; 2024 Factual Docs Clone</p>
-    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
     <script src="/auth.js"></script>
     <script>
-        document.querySelector('form').addEventListener('submit', (e) => {
+        document.getElementById('register-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const username = e.target.username.value;
             const password = e.target.password.value;

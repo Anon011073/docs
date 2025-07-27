@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - Factual Docs Clone</title>
+    <!-- Halfmoon CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <a href="/">Factual Docs Clone</a>
-        </div>
-        <div class="user-actions">
-            <!-- User actions will be dynamically populated -->
-        </div>
-    </header>
+<body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+    <div class="page-wrapper with-navbar">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <a href="/" class="navbar-brand">Factual Docs Clone</a>
+            </div>
+            <div class="navbar-content ml-auto" id="user-actions">
+                <!-- User actions will be dynamically populated -->
+            </div>
+        </nav>
 
-    <main>
-        <h2>My Profile</h2>
-        <h3 id="username-heading"></h3>
-        <h3>My Favorites</h3>
-        <div class="video-grid" id="saved-videos-grid">
-            <!-- Saved videos will be populated here -->
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <h2 class="content-title">My Profile</h2>
+                <h3 id="username-heading"></h3>
+                <div class="row" id="saved-videos-grid">
+                    <!-- Saved videos will be populated here -->
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <p>&copy; 2024 Factual Docs Clone</p>
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
     <script src="/auth.js"></script>
     <script src="/video.js"></script>
     <script src="/profile.js"></script>

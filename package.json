@@ -1,0 +1,14 @@
+{
+  "name": "factual-docs-clone-server",
+  "version": "1.0.0",
+  "description": "A simple proxy server for the Factual Docs Clone project.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
