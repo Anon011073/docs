@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const user = users.find(u => u.username === loggedInUser);
     if (user) {
-        document.getElementById('username-heading').textContent = `${user.username}'s Profile`;
+        document.getElementById('username-heading').textContent = user.username;
         const savedVideosGrid = document.getElementById('saved-videos-grid');
         savedVideosGrid.innerHTML = '';
         user.savedVideos.forEach(videoId => {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Factual Docs Clone</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <header>
@@ -18,9 +18,10 @@
                     <!-- Categories will be populated here -->
                 </div>
             </div>
-            <div class="search-bar">
+            <form class="search-bar">
                 <input type="text" placeholder="Search for videos...">
-            </div>
+                <button type="submit" style="display: none;"></button>
+            </form>
         </nav>
         <div class="user-actions">
             <!-- User actions will be dynamically populated -->
@@ -32,8 +33,20 @@
             <h3>Add a new video</h3>
             <form id="add-video-form">
                 <div class="form-group">
+                    <label for="video-title">Title</label>
+                    <input type="text" id="video-title" name="video-title" required>
+                </div>
+                <div class="form-group">
                     <label for="video-url">YouTube Video URL</label>
                     <input type="text" id="video-url" name="video-url" required>
+                </div>
+                <div class="form-group">
+                    <label for="video-category">Category</label>
+                    <input type="text" id="video-category" name="video-category" required>
+                </div>
+                <div class="form-group">
+                    <label for="video-tags">Tags (comma-separated)</label>
+                    <input type="text" id="video-tags" name="video-tags">
                 </div>
                 <button type="submit">Add Video</button>
             </form>
@@ -47,9 +60,9 @@
         <p>&copy; 2024 Factual Docs Clone</p>
     </footer>
 
-    <script src="auth.js"></script>
-    <script src="video.js"></script>
-    <script src="script.js"></script>
+    <script src="/auth.js"></script>
+    <script src="/video.js"></script>
+    <script src="/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const userActions = document.querySelector('.user-actions');
@@ -57,8 +70,9 @@
             const addVideoFormContainer = document.querySelector('.add-video-form-container');
 
             if (loggedInUser) {
+                const user = users.find(u => u.username === loggedInUser);
                 userActions.innerHTML = `
-                    <a href="/profile">${loggedInUser}</a>
+                    <a href="/profile.html">${loggedInUser}</a>
                     <a href="#" id="logout">Logout</a>
                 `;
                 document.getElementById('logout').addEventListener('click', (e) => {
@@ -66,7 +80,9 @@
                     logout();
                     window.location.reload();
                 });
-                addVideoFormContainer.style.display = 'block';
+                if (user && user.isAdmin) {
+                    addVideoFormContainer.style.display = 'block';
+                }
             } else {
                 userActions.innerHTML = `
                     <a href="/login.html">Login</a>
@@ -76,8 +92,11 @@
 
             document.getElementById('add-video-form').addEventListener('submit', (e) => {
                 e.preventDefault();
+                const videoTitle = e.target['video-title'].value;
                 const videoUrl = e.target['video-url'].value;
-                const result = addVideo(videoUrl);
+                const videoCategory = e.target['video-category'].value;
+                const videoTags = e.target['video-tags'].value.split(',').map(tag => tag.trim());
+                const result = addVideo(videoTitle, videoUrl, videoCategory, videoTags);
                 if (result.success) {
                     renderVideos();
                     e.target.reset();
@@ -87,6 +106,13 @@
             });
 
             renderVideos();
+
+            document.querySelector('.search-bar').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const searchTerm = e.target.querySelector('input').value;
+                const filteredVideos = videos.filter(video => video.title.toLowerCase().includes(searchTerm.toLowerCase()));
+                renderVideos(filteredVideos);
+            });
         });
     </script>
 </body>

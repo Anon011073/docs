@@ -6,7 +6,8 @@ function register(username, password) {
     if (users.find(user => user.username === username)) {
         return { success: false, message: 'Username already exists' };
     }
-    users.push({ username, password, savedVideos: [] });
+    const isAdmin = username === 'admin';
+    users.push({ username, password, savedVideos: [], isAdmin });
     return { success: true };
 }
 
