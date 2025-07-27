@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factual Docs Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">Factual Docs Clone</a>
+        </div>
+        <nav>
+            <div class="categories-menu">
+                <button class="categories-button">Categories</button>
+                <div class="categories-content">
+                    <!-- Categories will be populated here -->
+                </div>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for videos...">
+            </div>
+        </nav>
+        <div class="user-actions">
+            <!-- User actions will be dynamically populated -->
+        </div>
+    </header>
+
+    <main>
+        <div class="add-video-form-container" style="display: none;">
+            <h3>Add a new video</h3>
+            <form id="add-video-form">
+                <div class="form-group">
+                    <label for="video-url">YouTube Video URL</label>
+                    <input type="text" id="video-url" name="video-url" required>
+                </div>
+                <button type="submit">Add Video</button>
+            </form>
+        </div>
+        <div class="video-grid">
+            <!-- Video thumbnails will be populated here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Factual Docs Clone</p>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="video.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userActions = document.querySelector('.user-actions');
+            const loggedInUser = getLoggedInUser();
+            const addVideoFormContainer = document.querySelector('.add-video-form-container');
+
+            if (loggedInUser) {
+                userActions.innerHTML = `
+                    <a href="/profile">${loggedInUser}</a>
+                    <a href="#" id="logout">Logout</a>
+                `;
+                document.getElementById('logout').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    logout();
+                    window.location.reload();
+                });
+                addVideoFormContainer.style.display = 'block';
+            } else {
+                userActions.innerHTML = `
+                    <a href="/login.html">Login</a>
+                    <a href="/register.html">Register</a>
+                `;
+            }
+
+            document.getElementById('add-video-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const videoUrl = e.target['video-url'].value;
+                const result = addVideo(videoUrl);
+                if (result.success) {
+                    renderVideos();
+                    e.target.reset();
+                } else {
+                    alert(result.message);
+                }
+            });
+
+            renderVideos();
+        });
+    </script>
+</body>
+</html>
