@@ -1,6 +1,10 @@
 // This is a mock authentication system. In a real application, this would be handled by a server.
 
-const users = [];
+let users = JSON.parse(localStorage.getItem('users')) || [];
+
+function saveUsers() {
+    localStorage.setItem('users', JSON.stringify(users));
+}
 
 function register(username, password) {
     if (users.find(user => user.username === username)) {
@@ -8,6 +12,7 @@ function register(username, password) {
     }
     const isAdmin = username === 'admin';
     users.push({ username, password, savedVideos: [], isAdmin });
+    saveUsers();
     return { success: true };
 }
 
