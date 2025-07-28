@@ -27,7 +27,7 @@ function renderVideos(videosToRender = videos) {
     videoGrid.innerHTML = '';
     videosToRender.forEach(video => {
         const videoElement = document.createElement('div');
-        videoElement.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'p-10');
+        videoElement.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'p-5');
         videoElement.innerHTML = `
             <div class="card h-full">
                 <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank">
@@ -35,7 +35,6 @@ function renderVideos(videosToRender = videos) {
                 </a>
                 <div class="card-body">
                     <h4 class="card-title">${video.title}</h4>
-                    <p class="text-muted">${video.category}</p>
                     <!-- <div class="video-tags">
                         ${video.tags.map(tag => `<span class="badge badge-primary">${tag}</span>`).join('')}
                     </div> -->

@@ -1,6 +1,6 @@
 /* Custom styles */
 body {
-    background-color: #1c1c1c;
+    background-color: #141414;
 }
 
 .navbar {
@@ -20,5 +20,19 @@ body {
 }
 
 .card {
-    background-color: #1c1c1c;
+    background-color: #141414;
+}
+
+a.video-link {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--content-padding) / 2);
+    text-decoration: none;
+    transition: var(--img-hover-transition-duration) filter;
+}
+
+.card-title {
+    font-weight: 400;
+    font-size: .9rem;
+    cursor: pointer;
 }
