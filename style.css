@@ -1,0 +1,4 @@
+/* Custom styles */
+.navbar #search-form.w-full {
+    width: 50% !important;
+}
