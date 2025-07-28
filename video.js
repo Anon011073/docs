@@ -29,20 +29,19 @@ function renderVideos(videosToRender = videos) {
         const videoElement = document.createElement('div');
         videoElement.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'mb-20');
         videoElement.innerHTML = `
-            <div class="card h-full">
+            <div>
                 <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank">
                     <img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" class="img-fluid rounded-top" alt="Video thumbnail">
                 </a>
                 <div class="card-body">
                     <h4 class="card-title">${video.title}</h4>
                     <p class="text-muted">${video.category}</p>
-                    <p>${video.description}</p>
                     <div class="video-tags">
                         ${video.tags.map(tag => `<span class="badge badge-primary">${tag}</span>`).join('')}
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-danger favorite-video-button" data-video-id="${video.id}">&#x2764;</button>
+                    <button class="btn btn-danger favorite-video-button" data-video-id="${video.id}"><i class="fas fa-heart"></i></button>
                 </div>
             </div>
         `;

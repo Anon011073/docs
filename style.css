@@ -1,4 +1,20 @@
 /* Custom styles */
+body {
+    background-color: #141414;
+}
+
+.navbar {
+    background-color: #1c1c1c;
+}
+
 .navbar #search-form.w-full {
     width: 50% !important;
+}
+
+#search-form .form-control {
+    background-color: #141414;
+}
+
+.video-tags .badge {
+    margin-right: 5px;
 }
