@@ -11,8 +11,8 @@
 <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
     <div class="page-wrapper with-navbar">
         <nav class="navbar">
-            <div class="navbar-content">
-                <a href="/" class="navbar-brand">Factual Docs Clone</a>
+            <a href="/" class="navbar-brand">Factual Docs Clone</a>
+            <div class="navbar-content d-flex">
                 <div class="dropdown with-arrow" data-dm-toggle="dropdown" id="categories-dropdown">
                     <button class="btn" data-toggle="dropdown" type="button" id="categories-button">
                         Categories <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -22,14 +22,12 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full d-flex justify-content-between">
-                <form class="form-inline w-half" id="search-form">
-                    <input type="text" class="form-control" placeholder="Search for videos...">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </form>
-                <div class="navbar-content" id="user-actions">
-                    <!-- User actions will be dynamically populated -->
-                </div>
+            <form class="form-inline w-full ml-auto" id="search-form" style="width: 50%;">
+                <input type="text" class="form-control w-full" placeholder="Search for videos...">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+            <div class="navbar-content ml-auto" id="user-actions">
+                <!-- User actions will be dynamically populated -->
             </div>
         </nav>
 

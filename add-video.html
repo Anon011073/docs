@@ -90,35 +90,13 @@
                 categorySelect.appendChild(option);
             });
 
-            async function fetchVideoTitle(videoId) {
-                try {
-                    const response = await fetch(`http://localhost:3000/get-video-title?videoId=${videoId}`);
-                    const data = await response.json();
-                    return data.title;
-                } catch (error) {
-                    console.error('Failed to fetch video title:', error);
-                    return null;
-                }
-            }
-
-            document.getElementById('add-video-form').addEventListener('submit', async (e) => {
+            document.getElementById('add-video-form').addEventListener('submit', (e) => {
                 e.preventDefault();
+                const videoTitle = e.target['video-title'].value;
                 const videoUrl = e.target['video-url'].value;
                 const videoDescription = e.target['video-description'].value;
                 const videoCategory = e.target['video-category'].value;
                 const videoTags = e.target['video-tags'].value.split(',').map(tag => tag.trim());
-
-                const videoId = extractVideoId(videoUrl);
-                if (!videoId) {
-                    alert('Invalid YouTube URL');
-                    return;
-                }
-
-                const videoTitle = await fetchVideoTitle(videoId);
-                if (!videoTitle) {
-                    alert('Failed to fetch video title. Please check the URL and try again.');
-                    return;
-                }
 
                 const result = addVideo(videoTitle, videoUrl, videoDescription, videoCategory, videoTags);
                 if (result.success) {
