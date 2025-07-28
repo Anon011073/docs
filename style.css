@@ -37,3 +37,11 @@ a.video-link {
     font-size: 18px;
     cursor: pointer;
 }
+
+.page-wrapper.with-navbar>.content-wrapper, .page-wrapper.with-navbar>.sidebar {
+    background-color: #191c20;
+}
+
+.img-fluid {
+    border-radius: 10px;
+}

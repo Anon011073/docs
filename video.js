@@ -27,7 +27,7 @@ function renderVideos(videosToRender = videos) {
     videoGrid.innerHTML = '';
     videosToRender.forEach(video => {
         const videoElement = document.createElement('div');
-        videoElement.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'p-5');
+        videoElement.classList.add('col-lg-4', 'col-md-6', 'col-sm-12', 'mb-20');
         videoElement.innerHTML = `
             <div class="card h-full">
                 <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank">
