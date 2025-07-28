@@ -27,22 +27,22 @@ function renderVideos(videosToRender = videos) {
     videoGrid.innerHTML = '';
     videosToRender.forEach(video => {
         const videoElement = document.createElement('div');
-        videoElement.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'mb-20');
+        videoElement.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'p-10');
         videoElement.innerHTML = `
-            <div>
+            <div class="card h-full">
                 <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank">
                     <img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" class="img-fluid rounded-top" alt="Video thumbnail">
                 </a>
                 <div class="card-body">
                     <h4 class="card-title">${video.title}</h4>
                     <p class="text-muted">${video.category}</p>
-                    <div class="video-tags">
+                    <!-- <div class="video-tags">
                         ${video.tags.map(tag => `<span class="badge badge-primary">${tag}</span>`).join('')}
-                    </div>
+                    </div> -->
                 </div>
-                <div class="card-footer">
+                <!-- <div class="card-footer">
                     <button class="btn btn-danger favorite-video-button" data-video-id="${video.id}"><i class="fas fa-heart"></i></button>
-                </div>
+                </div> -->
             </div>
         `;
         videoGrid.appendChild(videoElement);

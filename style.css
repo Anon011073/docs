@@ -1,6 +1,6 @@
 /* Custom styles */
 body {
-    background-color: #141414;
+    background-color: #1c1c1c;
 }
 
 .navbar {
@@ -17,4 +17,8 @@ body {
 
 .video-tags .badge {
     margin-right: 5px;
+}
+
+.card {
+    background-color: #1c1c1c;
 }
