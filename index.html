@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentary Video Website</title>
+  <link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.1/css/halfmoon.min.css" rel="stylesheet">
+  <style>
+    .card-img-top {
+      border-top-left-radius: var(--bs-card-inner-border-radius);
+      border-top-right-radius: var(--bs-card-inner-border-radius);
+    }
+    .navbar {
+        background-color: #24282d;
+    }
+  </style>
+</head>
+<body class="dark-mode bg-dark-2">
+  <div class="page-wrapper with-navbar">
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="#" class="navbar-brand">DocuStream</a>
+      </div>
+      <div class="navbar-content d-flex w-full">
+        <form class="w-full" action="javascript:void(0);">
+          <input type="text" class="form-control w-full" placeholder="Search">
+        </form>
+      </div>
+      <div class="navbar-content">
+        <div class="dropdown">
+          <button class="btn" data-bs-toggle="dropdown" type="button" id="dropdown-menu-button-1">
+            Categories
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdown-menu-button-1">
+            <a href="#" class="dropdown-item">Nature</a>
+            <a href="#" class="dropdown-item">History</a>
+            <a href="#" class="dropdown-item">Science</a>
+            <a href="#" class="dropdown-item">Technology</a>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="button">Login</button>
+        <button class="btn" type="button">Register</button>
+      </div>
+    </nav>
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+            <div class="card">
+              <img src="https://via.placeholder.com/400x225" class="card-img-top" alt="Video placeholder">
+              <div class="card-body">
+                <h5 class="card-title">Video Title 1</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img src="https://via.placeholder.com/400x225" class="card-img-top" alt="Video placeholder">
+              <div class="card-body">
+                <h5 class="card-title">Video Title 2</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img src="https://via.placeholder.com/400x225" class="card-img-top" alt="Video placeholder">
+              <div class="card-body">
+                <h5 class="card-title">Video Title 3</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img src="https://via.placeholder.com/400x225" class="card-img-top" alt="Video placeholder">
+              <div class="card-body">
+                <h5 class="card-title">Video Title 4</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/halfmoon@2.0.1/js/halfmoon.min.js"></script>
+  <script>
+    const videoGrid = document.querySelector('.row-cols-1');
+    let videoCounter = 5;
+
+    function addMoreVideos() {
+      for (let i = 0; i < 4; i++) {
+        const col = document.createElement('div');
+        col.classList.add('col');
+        col.innerHTML = `
+          <div class="card">
+            <img src="https://via.placeholder.com/400x225" class="card-img-top" alt="Video placeholder">
+            <div class="card-body">
+              <h5 class="card-title">Video Title ${videoCounter++}</h5>
+            </div>
+          </div>
+        `;
+        videoGrid.appendChild(col);
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        addMoreVideos();
+      }
+    });
+  </script>
+</body>
+</html>
